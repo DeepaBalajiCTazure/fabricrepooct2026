@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "model1frommedallion"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f4018b9c-9978-a770-4097-7eccd72310a1"
+  }
+}

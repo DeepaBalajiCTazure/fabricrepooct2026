@@ -1,0 +1,172 @@
+[
+  {
+    "uniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c",
+    "payload": {
+      "name": "dashboard1_cap",
+      "description": "Container Description",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "7d6cff1f-2929-4fb3-8873-240832dc9620",
+    "payload": {
+      "name": "eh_stock_cap event",
+      "runSettings": {
+        "isStopped": false,
+        "executionIntervalInSeconds": 3600
+      },
+      "query": {
+        "queryString": "stock\n | where todatetime([\"time\"]) > ago(5m)\n | summarize avgPrice = avg(todecimal(bidPrice)) by symbol\n | project symbol, avgPrice"
+      },
+      "eventhouseItem": {
+        "itemId": "264b571f-ceb2-9c83-4cd7-c65a5b97ba92",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "7907f786-2ea6-4931-8673-3671cc769255",
+        "dashboardId": "3588831e-a2be-48a2-91bb-92384bf2c951",
+        "visualId": "dc4a9ec4-4043-4058-a480-c34399f15348"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "ba241d26-ce3f-4f9a-a4af-edbd991d4dcf",
+    "payload": {
+      "name": "eh_stock_cap event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"b94bd06a-e24b-4ee5-a01e-b7c0e4dcd053\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"7d6cff1f-2929-4fb3-8873-240832dc9620\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5",
+    "payload": {
+      "name": "avgPrice",
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Object"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "70e98302-4f23-4ceb-a989-2f89573e36b4",
+    "payload": {
+      "name": "avgPrice",
+      "parentObject": {
+        "targetUniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"a7bda674-ea6f-40d2-85c3-cc0f9bacf348\",\"name\":\"IdPartStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"IdentityPartAttribute\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "49ff2189-2922-4833-8123-dd19c9ea6053",
+    "payload": {
+      "name": "avgPrice",
+      "parentObject": {
+        "targetUniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"8d5c775d-ddd0-42bd-bd93-020e9a0f17d0\",\"name\":\"IdStructureStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"70e98302-4f23-4ceb-a989-2f89573e36b4\"}],\"kind\":\"AttributeReference\",\"name\":\"idPart\",\"type\":\"complex\"}],\"kind\":\"IdPart\",\"name\":\"IdPart\"}]}],\"templateId\":\"IdentityTupleAttribute\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "ddaf0743-36f4-412c-bb67-f32aa982e13d",
+    "payload": {
+      "name": "eh_stock_cap event",
+      "parentObject": {
+        "targetUniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"d8133cf3-c783-4468-9e16-ef28c1244283\",\"name\":\"SplitEventStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"ba241d26-ce3f-4f9a-a4af-edbd991d4dcf\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"avgPrice\"},{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"70e98302-4f23-4ceb-a989-2f89573e36b4\"}],\"kind\":\"AttributeReference\",\"name\":\"idPart\",\"type\":\"complex\"}],\"kind\":\"FieldIdMapping\",\"name\":\"FieldIdMapping\"},{\"arguments\":[{\"name\":\"isAuthoritative\",\"type\":\"boolean\",\"value\":true}],\"kind\":\"EventOptions\",\"name\":\"SplitEventOptions\"}]}],\"templateId\":\"SplitEvent\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "26a97ea2-5819-4ae4-b3d2-2feab98f47d3",
+    "payload": {
+      "name": "symbol",
+      "parentObject": {
+        "targetUniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"0f57b708-3974-4d9c-9db3-fdb94f05b771\",\"name\":\"EventSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"ddaf0743-36f4-412c-bb67-f32aa982e13d\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"symbol\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"}]},{\"id\":\"aec26aed-d6a2-4570-b30a-66d1c40f138c\",\"name\":\"EventComputeStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "d5133195-6b58-4b7d-9a8c-ccb9435f5d12",
+    "payload": {
+      "name": "avgPrice",
+      "parentObject": {
+        "targetUniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"6313cce5-68c5-446e-bad1-01aff9a484bd\",\"name\":\"EventSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"ddaf0743-36f4-412c-bb67-f32aa982e13d\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"avgPrice\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"}]},{\"id\":\"c434cb97-b64e-42b3-ade4-1b865b3c93e0\",\"name\":\"EventComputeStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "bcdd6afc-3a17-442d-8372-83739aa5c01d",
+    "payload": {
+      "name": "rul1_cap",
+      "parentObject": {
+        "targetUniqueIdentifier": "0f43fbcc-d9ff-47b4-9178-29ad73f6a2d5"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "399d5402-aff7-4946-b9d0-8faa8f6e1c0c"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"AttributeTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"ScalarSelectStep\",\"id\":\"d7a809f5-a2d7-4ae5-a69f-05a12a52fa11\",\"rows\":[{\"name\":\"AttributeSelector\",\"kind\":\"Attribute\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"26a97ea2-5819-4ae4-b3d2-2feab98f47d3\"}],\"name\":\"attribute\"}]}]},{\"name\":\"ScalarDetectStep\",\"id\":\"5f24918e-4e1c-4a1c-b682-b9867d1aafda\",\"rows\":[{\"name\":\"NumberBecomes\",\"kind\":\"NumberBecomes\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"BecomesLessThan\"},{\"name\":\"value\",\"type\":\"number\",\"value\":100.0}]},{\"name\":\"OccurrenceOption\",\"kind\":\"EachTime\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"c784d92f-3412-4182-bca7-657a17e98c38\",\"rows\":[{\"name\":\"TeamsBinding\",\"kind\":\"TeamsMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"recipients\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"deepadp600@grdipsgmail.onmicrosoft.com\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition has been met\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"avgPrice\"},{\"kind\":\"AttributeReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"d5133195-6b58-4b7d-9a8c-ccb9435f5d12\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]

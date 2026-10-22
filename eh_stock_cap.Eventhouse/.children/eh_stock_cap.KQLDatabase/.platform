@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "eh_stock_cap"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "264b571f-ceb2-9c83-4cd7-c65a5b97ba92"
+  }
+}

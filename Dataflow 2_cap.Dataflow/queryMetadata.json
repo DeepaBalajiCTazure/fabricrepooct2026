@@ -1,0 +1,23 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Dataflow 2_cap",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "orders": {
+      "queryId": "0028687d-0cb9-4395-a209-8ce3412b82e4",
+      "queryName": "orders",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/orders.csv",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"afcdc56a-67ba-4ca4-a88a-8b18660dfbd8\",\"DatasourceId\":\"8764db6d-ff5e-4179-bea4-3d72ecda97e6\"}"
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": 86,
+  "flavor": "RTDashboard_Regular",
+  "changeDetection": {
+    "kind": "manualUpdates"
+  },
+  "tiles": [
+    {
+      "id": "dc4a9ec4-4043-4058-a480-c34399f15348",
+      "title": "Stockanalysis1",
+      "visualType": "bar",
+      "pageId": "16964a50-79e0-40b0-ad33-7dfe46edfab1",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "85440af6-56de-4788-81d0-7c51daffa7d8"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        }
+      }
+    },
+    {
+      "id": "d5345106-dc36-4dc8-b9a1-8c89927c5a9c",
+      "title": "stockana2",
+      "visualType": "column",
+      "pageId": "16964a50-79e0-40b0-ad33-7dfe46edfab1",
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "ac151fc1-c15a-4a1b-9d15-c22b476acea0"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "56ed41ae-433a-494b-9736-1c9bf862643f",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "804c27d8-0002-4fa7-aa14-57dd2755aa5b",
+      "kind": "kusto-trident",
+      "name": "eh_stock_cap",
+      "clusterUri": "",
+      "databaseArtifactId": "5b97ba92-c65a-4cd7-9c83-ceb2264b571f",
+      "database": "264b571f-ceb2-9c83-4cd7-c65a5b97ba92",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "16964a50-79e0-40b0-ad33-7dfe46edfab1"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "804c27d8-0002-4fa7-aa14-57dd2755aa5b"
+      },
+      "text": " stock\n | where todatetime([\"time\"]) > ago(5m)\n | summarize avgPrice = avg(todecimal(bidPrice)) by symbol\n | project symbol, avgPrice\n",
+      "id": "85440af6-56de-4788-81d0-7c51daffa7d8",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "804c27d8-0002-4fa7-aa14-57dd2755aa5b"
+      },
+      "text": "stock\r\n| summarize IngestionCount = count() by bin(ingestion_time(), 10min)",
+      "id": "ac151fc1-c15a-4a1b-9d15-c22b476acea0",
+      "usedVariables": []
+    }
+  ],
+  "embeddedApps": []
+}
